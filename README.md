@@ -72,12 +72,25 @@ SELECT DISTINCT  City FROM Customers;
 + DISTINCT ifadesi sütun içerisindeki tekrar eden verileri tekil bir hale getirmeye yarar.
 
 
+```sql
+SELECT COUNT(DISTINCT City) FROM Customers;
+```
++ Birbirinden farklı kaçtana şehir oldğunu sayı olarak belirtmektedir.
+
+### WHERE
+
+```sql
+SELECT * FROM Customers WHERE City = 'Berlin';
+
+```
++WHERE ifadesi Customers tablosu içerisinde bulunan City sütunu için uygulanmış ve sütunda Berlin Varmı diye kontrol edilmiştir. 
+
+### SQL AND,OR ve NOT Operatörleri
+```sql
 
 
 
-
-
-
+```
 
 
 
