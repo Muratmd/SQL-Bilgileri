@@ -1,1 +1,1 @@
-# SQL-Bigileri
+# SQL-Bilgileri
