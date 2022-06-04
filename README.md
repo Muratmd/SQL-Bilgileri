@@ -1,6 +1,7 @@
-# SQL-Bilgile
+# SQL-Bilgileri
 
 
 ```sql
 SELECT * FROM Customers;
+asd
 ```
