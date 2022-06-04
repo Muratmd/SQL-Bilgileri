@@ -46,16 +46,30 @@
 
 # Sql Soguları Örnekler İle
 
+> Northwind veritabanını seçtikten sonra New Query diyerek veritabanı üzerinde sorguları çalıştıra bilirsiniz.
+
+### SELECT
+
 ```sql
-
-SELECT * FROM table_name;
-
-
+SELECT * FROM Customers;
 ```
++ getirmek istediğimiz tablonun ismini yazarak o tablodaki bütün Sütunları getire biliriz.
++ Customers burda bizim veritabanımızın içerisinde bulunan bir tablonun ismidir.
 
+### Tabloda Sütunları Seçme İşlemi
+```sql
+SELECT CustomerID FROM Customers;
+```
++ Bu işlemde Customers tablosunun içerisinde bulunan CustomerId Sütununu getirmiş bulunduk.
++ Dikkat edecek olursanız bir önceki işlemde bulunan  *  işateti yok çünki  *  o tablo içerisindeki bütün sütunları çekmek için kullanılır
++ CustomerID yanına ',' koyarak başka sütunlarada erişilebilir.
 
+### SELECT DISTINCT
 
-
+```sql
+SELECT DISTINCT  City FROM Customers;
+```
++ DISTINCT ifadesi sütun içerisindeki tekrar eden verileri tekil bir hale getirmeye yarar.
 
 
 
