@@ -3,5 +3,5 @@
 
 ```sql
 SELECT * FROM Customers;
-asd
+//ads
 ```
