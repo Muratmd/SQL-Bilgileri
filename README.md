@@ -86,11 +86,62 @@ SELECT * FROM Customers WHERE City = 'Berlin';
 +WHERE ifadesi Customers tablosu içerisinde bulunan City sütunu için uygulanmış ve sütunda Berlin Varmı diye kontrol edilmiştir. 
 
 ### SQL AND,OR ve NOT Operatörleri
+#### 1. AND
+
 ```sql
-
-
-
+SELECT * FROM Customers WHERE ContactTitle ='Owner' AND Country ='Mexico';
 ```
++ Adında anlaşılacağı gibi "ve" operatorünü kullanarak owner ve ülkesi Mexico olan verileri Seçtik.
+
+#### 2. OR
+```sql
+SELECT * FROM Customers WHERE Country ='USA' OR Country ='Mexico';
+```
++ OR(VEYA) ifadesinde ülkesi ABD yada Mexico olan kayıtları Seçtik.
+
+#### 3. NOT
+```sql
+SELECT * FROM Customers WHERE NOT Country ='USA' OR Country ='Mexico';
+```
++ NOT(Değili) OR işleminde USA veya Mexico yu getir demiştik WHERE'den sonra NOT yazarak tam tersi bir işlem yaparak bu sefer de USA veya Mexico hariç kalan verileri getirdik.
+
+#### Örnek 1 Combining AND ve OR
+```sql
+SELECT * FROM Customers WHERE Country ='Venezuela' AND (City ='Barquisimeto' OR City='I. de Margarita');
+```
++ Ülkesi Venezuela ve şehiri Barquisimeto veya I. de Margarita olan kayıtları seçtik.
+
+#### Örnek 2 Combining AND ve NOT
+```sql
+SELECT * FROM Customers WHERE NOT Country ='Venezuela' AND NOT Country ='USA';
+```
++ AND kullanarak Yine ters işlem yaptık Venezuella ve USA hariç kayıtları seçtik.
+
+### ORDER BY(ASC)
+```sql
+SELECT * FROM Customers ORDER BY Country;
+```
++ Alfabetik yada Sayısal sıralama bu ASC sıralamadır.(DESC diye Belirtmediğinizde ASC dir ).
++ Customers Tablosunun Ülkeler sütunu içerisindeki verileri alfabetik sıraya soktuk.
++ 
+
+### ORDER BY DESC
+```sql
+SELECT * FROM Customers ORDER BY Country DESC;
+```
++ Yine Alfabetik ve Sayısal bir sıralama ancak Büyükten Küçüğe bir sıralama var().
+
+### Birden Fazla Sütunda ORDER BY
+```sql
+SELECT * FROM Customers ORDER BY Country, CompanyName;
+```
++ ORDER BY dan sonra , koyulması yeterlidir.
+
+## Birden Fazla Sütunda ORDER BY ASC ve DESC 
+```sql
+SELECT * FROM Customers ORDER BY Country ASC, CompanyName DESC;
+```
++ Country i ASC (A dan Z ye) , CompanyName DESC (Z den A ya) olarak sıralamsını istedik böylece ilk olarak ülkeler ASC (A dan Z ye) olarak sıralandı daha sonra aynı ülkenin CompanyNameleri DESC (Z den A ya) sıralandı
 
 
 
