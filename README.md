@@ -188,6 +188,46 @@ WHERE Country='Mexico';
 ```
 + Customers tablosu içerisindeki ülkesi 'Mexico' olan bütün kayıtların hepsinin 'ContactName' Juan olarak değiştirdik.
 
+### SQL DELETE
+
++ DELETE ifadesi, bir tablodaki mevcut kayıtları silmek için kullanılır.
+
+```sql
+DELETE FROM Customers WHERE CustomerID='MURAT';
+```
++ WHERE önemlidir WHERE ifadesi kullanılmaz ise bütün tablodaki veriler silinecektir
+
+```sql
+DELETE FROM Customers;
+```
++ WHERE kullanılmadığı için tablodaki bütün veriler silinecektir.
+
+### SQL SELECT TOP
+
++ SELECT TOP döndürülecek kayıt sayısını belirtmek için kullanılır.
++ SELECT TOP binlerce kayıt içeren büyük tablolarda kullanışlıdır. Çok sayıda kayıt döndürmek performansı etkileyebilir.
++ Tüm veritabanı sistemleri SELECT TOP desteklemez. MySQL, sınırlı sayıda kayıt seçmek için LIMIT desteklerken. Oracle, FETCH FIRST n ROWS ONLY ve ROWNUM'u kullanır.
+
+#### SQL Server/MS Access(MSSQL)
+```sql 
+SELECT TOP 3 * FROM Customers;
+```
+#### MySQL
+```sql
+SELECT * FROM Customers
+LIMIT 3;
+```
+#### Oracle
+```sql 
+SELECT * FROM Customers
+FETCH FIRST 3 ROWS ONLY;
+```
+
+
+
+
+
+
 
 
 
