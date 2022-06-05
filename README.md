@@ -83,7 +83,7 @@ SELECT COUNT(DISTINCT City) FROM Customers;
 SELECT * FROM Customers WHERE City = 'Berlin';
 
 ```
-+WHERE ifadesi Customers tablosu içerisinde bulunan City sütunu için uygulanmış ve sütunda Berlin Varmı diye kontrol edilmiştir. 
++ WHERE ifadesi Customers tablosu içerisinde bulunan City sütunu için uygulanmış ve sütunda Berlin Varmı diye kontrol edilmiştir. 
 
 ### SQL AND,OR ve NOT Operatörleri
 #### 1. AND
@@ -143,10 +143,13 @@ SELECT * FROM Customers ORDER BY Country ASC, CompanyName DESC;
 ```
 + Country i ASC (A dan Z ye) , CompanyName DESC (Z den A ya) olarak sıralamsını istedik böylece ilk olarak ülkeler ASC (A dan Z ye) olarak sıralandı daha sonra aynı ülkenin CompanyNameleri DESC (Z den A ya) sıralandı
 
-
-
-
-
+### INSERT INTO
++ INSERT INTO ifadesi, bir tabloya yeni kayıtlar eklemek için kullanılır.
+```sql
+INSERT INTO Customers (CustomerID, ContactName, City, PostalCode, Country,CompanyName)
+VALUES ('MURAT','Murat Dursun','Ankara','06300','Turkey','ASD');
+```
++ Customers tablosunun içerisindeki sütunlarından bazılarını yeni bir kayıt yapmak için seçtik ve ardından sırası ile bu sütunlara VALUES komutunu kullanarak değerleri atadık.
 
 
 
