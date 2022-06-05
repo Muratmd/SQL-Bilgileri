@@ -1,6 +1,6 @@
 # SQL-Bilgileri
 
-+ örnek veritabanına bu [linkten ulaşa bilirsiniz](https://raw.githubusercontent.com/Muratmd/SQL-Bilgileri/main/Nortwind.sql?token=GHSAT0AAAAAABUDZ6TJ3XPY2LG2SCQGSW7GYU26MCA).
++ örnek veritabanına bu [linkten ulaşa bilirsiniz](https://github.com/Muratmd/SQL-Bilgileri/blob/main/Nortwind.sql).
 
 + linkteki sql i kopyaladıktan sonra Mssql üzerinden New Query diyerek Execute ediniz ardından Databases kısmında Northwind veritabanına ulaşabilirsiniz.
 
