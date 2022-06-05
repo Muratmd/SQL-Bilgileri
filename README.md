@@ -151,9 +151,21 @@ VALUES ('MURAT','Murat Dursun','Ankara','06300','Turkey','ASD');
 ```
 + Customers tablosunun içerisindeki sütunlarından bazılarını yeni bir kayıt yapmak için seçtik ve ardından sırası ile bu sütunlara VALUES komutunu kullanarak değerleri atadık.
 
+### NULL Value NEDİR?
++ NULL değeri olan bir alan, değeri olmayan bir alandır.
++ Sütunda boş bir alan olması NULL olduğu anlamına gelmez.
 
-
-
-
-
-
+## IS NULL Sorgu
+```sql
+SELECT ContactName, Address
+FROM Customers
+WHERE Address IS NULL;
+```
++ Customers Tablosunda Addess NULL olan verileri seçtik.
+## IS NOT NULL Sorgu
++ NULL Değil sorgu(Adresi boş olmayan veriler)
+```sql
+SELECT ContactName, Address
+FROM Customers
+WHERE Address IS NOT NULL;
+```
