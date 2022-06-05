@@ -223,16 +223,24 @@ SELECT * FROM Customers
 FETCH FIRST 3 ROWS ONLY;
 ```
 
+### SQL TOP PERCENT
++ PERCENT ifadesi tablodaki kayıt sayısını belirli bir yüzde içerisinde seçer.
+
+```sql
+SELECT TOP 50 PERCENT * FROM Customers;
+```
++Tablodaki kayıtların 50% desini seçmiş olduk.
+
+### WHERE ile birlikte TOP Kullanımı
+
+```sql 
+SELECT TOP 3 * FROM Customers
+WHERE Country='Germany';
+```
++ Ülkeye göre yaptığımız filtrelemelerde sadece ilk 3'nü almış olduk.
 
 
-
-
-
-
-
-
-
-
+# min max da kaldım
 
 
 
