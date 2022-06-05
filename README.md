@@ -169,3 +169,31 @@ SELECT ContactName, Address
 FROM Customers
 WHERE Address IS NOT NULL;
 ```
+
+### SQL UPDATE
+
++ UPDATE ifadesi, bir tablodaki mevcut kayıtları değiştirmek(Güncellemek) için kullanılır.
+```sql
+UPDATE Customers
+SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+WHERE CustomerID = 'ALFKI';
+```
++ CustomerID 'ALFKI' olan kayıtın iki alanını(ContactName ve City) güncellemiş olduk.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
