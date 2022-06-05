@@ -180,8 +180,13 @@ WHERE CustomerID = 'ALFKI';
 ```
 + CustomerID 'ALFKI' olan kayıtın iki alanını(ContactName ve City) güncellemiş olduk.
 
-
-
+## Birden Fazla Kayıtı Güncelleme
+```sql
+UPDATE Customers
+SET ContactName='Juan'
+WHERE Country='Mexico';
+```
++ Customers tablosu içerisindeki ülkesi 'Mexico' olan bütün kayıtların hepsinin 'ContactName' Juan olarak değiştirdik.
 
 
 
