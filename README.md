@@ -292,42 +292,92 @@ FROM Products;
 + Prooducts tablosundaki UnitPrice sütununu kullanarak sütundaki değerileri topladık.
 
 ### SQL LIKE
-+ Aşağıdaki SQL ifadesi, "a" ile başlayan MüşteriAdı olan tüm müşterileri seçer.
++ Aşağıdaki SQL ifadesi, "a" ile başlayan MüşteriAdı olan tüm CustomerID seçer.
 ``` sql 
 SELECT * FROM Customers
 WHERE CustomerID LIKE 'a%';
 ```
 
-+ Aşağıdaki SQL ifadesi, "a" ile biten bir MüşteriAdı olan tüm müşterileri seçer.
++ Aşağıdaki SQL ifadesi, "a" ile biten bir MüşteriAdı olan tüm CustomerID seçer.
 ``` sql 
 SELECT * FROM Customers
 WHERE CustomerID LIKE '%a';
 ```
 
-+Aşağıdaki SQL ifadesi, herhangi bir konumda "or" olan bir MüşteriAdı olan tüm müşterileri seçer.
++ Aşağıdaki SQL ifadesi, herhangi bir konumda "or" olan bir CustomerID olan tüm müşterileri seçer.
 ```sql
 SELECT * FROM Customers
 WHERE CustomerID LIKE '%or%';
 ```
 
-+ Aşağıdaki SQL ifadesi, ikinci konumda "r" olan bir MüşteriAdı olan tüm müşterileri seçer.
++ Aşağıdaki SQL ifadesi, ikinci konumda "r" olan bir CustomerID olan tüm müşterileri seçer.
 ```sql
 SELECT * FROM Customers
 WHERE CustomerID LIKE '_r%';
 ```
 
-+ Aşağıdaki SQL ifadesi, "a" ile başlayan ve en az 3 karakter uzunluğunda bir MüşteriAdı olan tüm müşterileri seçer:
++ Aşağıdaki SQL ifadesi, "a" ile başlayan ve en az 3 karakter uzunluğunda bir CustomerID olan tüm müşterileri seçer:
 
 ```sql
 SELECT * FROM Customers
 WHERE CustomerID LIKE 'a__%';
 ```
 
++ Aşağıdaki SQL ifadesi, "a" ile başlayan ve "o" ile biten bir CustomerID ile tüm müşterileri seçer:
 
+```sql
+SELECT * FROM Customers
+WHERE CustomerID LIKE 'A%I';
+```
 
-
-
-
++ Aşağıdaki SQL ifadesi, "a" ile BAŞLAMAYAN MüşteriAdı olan tüm müşterileri seçer:
+ ```sql 
+ SELECT * FROM Customers
+WHERE CustomerID NOT LIKE 'a%';
+ 
+ ```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
