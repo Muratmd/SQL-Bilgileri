@@ -337,14 +337,17 @@ WHERE CustomerID NOT LIKE 'a%';
  
  ```
  
+### SQL Wildcard(JOKER) Karakterler
  
+ + Joker karakterler LIKE operatörüyle birlikte kullanılır. LIKE operatörü, bir sütunda belirtilen bir kalıbı aramak için bir WHERE yan tümcesinde kullanılır.
  
- 
- 
- 
- 
- 
- 
+ | Sembol  | Tanım | Örnek |
+ | ------------- | ------------- | ------------- |
+ | % |  Sıfır veya daha fazla karakteri temsil eder. | %MU / ilk harfde m ve u arar. Murat ve Mustafa gibi. |
+ | _  |  Tek bir karakteri temsil eder. | M_R_T / joker harf "_" olan yere herhangi bir harf gelebilir.  |
+ | [ ]  | Parantez içindeki herhangi bir tek karakteri temsil eder | M[URA]T(MURAT I BULAMAZ!!) MUT,MRT ve MAT gibi şeyleri bulur sadece [ ] içerisindeki harfler  tek harf yerine geçer. |
+ | ^  | Parantez içinde olmayan herhangi bir karakteri temsil eder  |M[^URA]T(MURAT I BULAMAZ!!) MUT,MRT ve MAT I bulamaz "^" ifadesi değil olarak kullanılıyor örnek MOT, MET gibi şeyleri bulabilir. |
+ | -  | Belirtilen aralıktaki herhangi bir tek karakteri temsil eder |Alfabetik Sırada bir aralık seçer C[A-K]T  dediğimizde C ve T arasına A dan K ya bütün harfleri kabul edecek ve veritabanında Örneğin CAT var ise CAT yazacak yada CET gibi. |
  
  
  
