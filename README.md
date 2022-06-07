@@ -229,7 +229,7 @@ FETCH FIRST 3 ROWS ONLY;
 ```sql
 SELECT TOP 50 PERCENT * FROM Customers;
 ```
-+Tablodaki kayıtların 50% desini seçmiş olduk.
++ Tablodaki kayıtların 50% desini seçmiş olduk.
 
 ### WHERE ile birlikte TOP Kullanımı
 
