@@ -240,7 +240,89 @@ WHERE Country='Germany';
 + Ülkeye göre yaptığımız filtrelemelerde sadece ilk 3'nü almış olduk.
 
 
-# min max da kaldım
+### MIN() and MAX()
+
+#### MIN()
++ MIN() fonksiyonu, seçilen sütunun en küçük değerini döndürür.
+
+```sql 
+SELECT MIN(UnitPrice) AS SmallestPrice
+FROM Products; 
+```
++ Products tablomuzdaki UnitPrice sütununda en küçük değeri almış olduk.
+
+#### MAX()
+
++ MAX() fonksiyonu, seçilen sütunda en büyük değeri döndürür.
+```sql 
+SELECT MIN(UnitPrice) AS SmallestPrice
+FROM Products; 
+```
++ Products tablomuzdaki UnitPrice sütununda en büyük değeri almış olduk.
+
+### SQL COUNT(), AVG() and SUM()
+
+#### COUNT()
++ COUNT() fonksiyonu, belirtilen bir ölçütle eşleşen satır sayısını döndürür.
+
+```sql
+SELECT COUNT(PRoductID)
+FROM Prooducts;
+``` 
++ Prooducts tablosundaki PRoductID sütununu kullanarak toplam kaç kayıt olduğunu hesaplamış olduk.
+
+
+#### AVG()
++ AVG() fonksiyonu, sayısal bir sütunun ortalama değerini döndürür.
+```sql 
+SELECT AVG(UnitPrice)
+FROM Products;
+```
++ Prooducts tablosundaki UnitPrice sütununu kullanarak sütundaki ortalama değeri hesapladık.
+
+
+#### SUM()
+
++ SUM() fonksiyonu, sayısal bir sütunun toplam toplamını döndürür.
+
+```sql 
+SELECT SUM(UnitPrice)
+FROM Products;
+```
++ Prooducts tablosundaki UnitPrice sütununu kullanarak sütundaki değerileri topladık.
+
+### SQL LIKE
++ Aşağıdaki SQL ifadesi, "a" ile başlayan MüşteriAdı olan tüm müşterileri seçer.
+``` sql 
+SELECT * FROM Customers
+WHERE CustomerID LIKE 'a%';
+```
+
++ Aşağıdaki SQL ifadesi, "a" ile biten bir MüşteriAdı olan tüm müşterileri seçer.
+``` sql 
+SELECT * FROM Customers
+WHERE CustomerID LIKE '%a';
+```
+
++Aşağıdaki SQL ifadesi, herhangi bir konumda "or" olan bir MüşteriAdı olan tüm müşterileri seçer.
+```sql
+SELECT * FROM Customers
+WHERE CustomerID LIKE '%or%';
+```
+
++ Aşağıdaki SQL ifadesi, ikinci konumda "r" olan bir MüşteriAdı olan tüm müşterileri seçer.
+```sql
+SELECT * FROM Customers
+WHERE CustomerID LIKE '_r%';
+```
+
++ Aşağıdaki SQL ifadesi, "a" ile başlayan ve en az 3 karakter uzunluğunda bir MüşteriAdı olan tüm müşterileri seçer:
+
+```sql
+SELECT * FROM Customers
+WHERE CustomerID LIKE 'a__%';
+```
+
 
 
 
