@@ -405,7 +405,7 @@ WHERE City NOT LIKE '[bsp]%';
  
  
  
- 
+ # IN de kaldım
 
 
 
