@@ -350,33 +350,58 @@ WHERE CustomerID NOT LIKE 'a%';
  | -  | Belirtilen aralıktaki herhangi bir tek karakteri temsil eder |Alfabetik Sırada bir aralık seçer C[A-K]T  dediğimizde C ve T arasına A dan K ya bütün harfleri kabul edecek ve veritabanında Örneğin CAT var ise CAT yazacak yada CET gibi. |
  
  
+ + Aşağıdaki SQL fonksiyonu, "ber" ile başlayan bir City'ye sahip tüm müşterileri seçer.
+ 
+```sql
+SELECT * FROM Customers
+WHERE City LIKE 'ber%';
+```
  
  
+ + Aşağıdaki SQL fonksiyonu, "es" kalıbını içeren bir Şehire sahip tüm müşterileri seçer.
  
+ ``` sql
+ SELECT * FROM Customers
+WHERE City LIKE '%es%';
+ ```
  
+ + Aşağıdaki SQL fonksiyonu, herhangi bir karakterle başlayan ve ardından "ondon" gelen City olan tüm müşterileri seçer.
+ ```sql
+ SELECT * FROM Customers
+WHERE City LIKE '_ondon';
+ ```
  
+ + Aşağıdaki SQL deyimi, "L" ile başlayan, ardından herhangi bir karakter, ardından "n", ardından herhangi bir karakter ve ardından "on" olan tüm müşterileri seçer:
  
+ ```sql
+ SELECT * FROM Customers
+WHERE City LIKE 'L_n_on';
+ ```
  
+ + Aşağıdaki SQL deyimi, "b", "s" veya "p" ile başlayan bir Şehire sahip tüm müşterileri seçer.
  
+ ```sql
+ SELECT * FROM Customers
+WHERE City LIKE '[bsp]%';
+ ```
+  + Aşağıdaki SQL deyimi, "a", "b" veya "c" ile başlayan bir Şehire sahip tüm müşterileri seçer.
  
+ ```sql
+ SELECT * FROM Customers
+WHERE City LIKE '[a-c]%';
+ ```
  
+ + Aşağıdaki iki SQL ifadesi, "b", "s" veya "p" ile BAŞLAMAYAN City'ye sahip tüm müşterileri seçer:
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ ```sql
+ SELECT * FROM Customers
+WHERE City LIKE '[!bsp]%';
+ ```
+ yada
+ ```sql
+ SELECT * FROM Customers
+WHERE City NOT LIKE '[bsp]%';
+ ```
  
  
  
