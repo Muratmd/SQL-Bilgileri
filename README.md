@@ -476,6 +476,7 @@ SELECT * FROM Orders
 WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
 ```
 
+# SQL Aliases de kaldım
 
 
 
