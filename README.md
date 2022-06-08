@@ -523,6 +523,22 @@ WHERE Customers.ContactName='Alfred Schmidt' AND Customers.CustomerID=Orders.Cus
 
 + JOIN yan tümcesi, aralarında ilgili bir sütuna dayalı olarak iki veya daha fazla tablodaki satırları birleştirmek için kullanılır.
 
+
+| OrderID  | 	CustomerID |OrderDate |
+| ------------- | ------------- | ------------- |
+| 10248 | VINET  | 1996-07-04|
+| 10249  |TOMSP  |  1996-07-05|
+| 10250  | HANAR  |  1996-07-08|
+
+
+| CustomerID  | 	ContactName |Country |
+| ------------- | ------------- | ------------- |
+| VINET | Mario Pontes  | Brazil|
+| TOMSP  |Karin Josephs | Germany|
+| HANAR  |Paul Henriot  | France|
+
++ Aşşağıdaki Sql sorgusunu Tablolara göre inceleyiniz.
++ Dikkat edecek olursanız CustomerId nin 2 tablodada bulunduğunu göreceksiniz bu nedenle Customers Tablosuna JOIN olarak Orders ve Customers tablosundaki CustomerID lerin eşit olduğu kayıtları seçtik.
 ````sql
 SELECT Orders.OrderID, Customers.ContactName, Orders.OrderDate
 FROM Orders
@@ -530,25 +546,15 @@ INNER JOIN Customers
 ON Orders.CustomerID=Customers.CustomerID;
 ````
 
-OrderID	CustomerID	OrderDate
-10308	2	1996-09-18
-10309	37	1996-09-19
-10310	77	1996-09-20
+### Farklı Tiplerdeki SQL JOINs
 
++ (INNER) JOIN: Her iki tabloda da eşleşen değerlere sahip kayıtları döndürür
 
++ LEFT (OUTER) JOIN: Soldaki tablodaki tüm kayıtları ve sağdaki tablodaki eşleşen kayıtları döndürür.
 
++ RIGHT (OUTER) JOIN: Sağdaki tablodaki tüm kayıtları ve soldaki tablodaki eşleşen kayıtları döndürür.
 
-
-
-
-
-
-
-
-
-
-
-
++ FULL (OUTER) JOIN: Sol veya sağ tabloda bir eşleşme olduğunda tüm kayıtları döndürür
 
 
 
