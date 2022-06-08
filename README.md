@@ -446,6 +446,33 @@ SELECT * FROM  Products WHERE UnitPrice NOT BETWEEN 10 AND 20;
 SELECT * FROM Products WHERE UnitPrice BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3) ORDER BY UnitPrice;
 ```` 
 
++ Aşağıdaki SQL deyimi, "Carnarvon Tigers" ve "Mozzarella di Giovanni" arasında "ProductName" olan tüm ürünleri seçer.
+
+```sql 
+SELECT * FROM Products
+WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
+ORDER BY ProductName;
+```
+
++ Aşağıdaki SQL ifadesi, Carnarvon Tigers ve Mozzarella di Giovanni arasında olmayan bir ProductName ile tüm ürünleri seçer:
+``` sql
+
+SELECT * FROM Products
+WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
+ORDER BY ProductName;
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
