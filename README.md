@@ -430,12 +430,14 @@ WHERE Country IN (SELECT Country FROM Suppliers);
 + BETWEEN operatörü, belirli bir aralıktaki değerleri seçer. Değerler sayı, metin veya tarih olabilir.
 + BETWEEN operatörü kapsayıcıdır: başlangıç ve bitiş değerleri dahildir.
 
+#### BETWEEN (ARASINDA)
 + Aşağıdaki SQL ifadesi, fiyatı 10 ile 20 arasında olan tüm ürünleri seçer,
 
 ```sql
 SELECT * FROM  Products WHERE UnitPrice BETWEEN 10 AND 20;
 ``` 
 
+#### NOT BETWEEN (ARASINDA DEĞİL)
 + Önceki örneğin kapsamı dışında kalan ürünleri görüntülemek için, NOT BETWEEN'i kullanın.
 ```sql
 SELECT * FROM  Products WHERE UnitPrice NOT BETWEEN 10 AND 20;
@@ -446,6 +448,8 @@ SELECT * FROM  Products WHERE UnitPrice NOT BETWEEN 10 AND 20;
 SELECT * FROM Products WHERE UnitPrice BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3) ORDER BY UnitPrice;
 ```` 
 
+#### BETWEEN Text Values(Metinsel aralık)
+
 + Aşağıdaki SQL deyimi, "Carnarvon Tigers" ve "Mozzarella di Giovanni" arasında "ProductName" olan tüm ürünleri seçer.
 
 ```sql 
@@ -453,7 +457,7 @@ SELECT * FROM Products
 WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
 ORDER BY ProductName;
 ```
-
+#### NOT BETWEEN Text Values (Metinlerin dışında kalanlar)
 + Aşağıdaki SQL ifadesi, Carnarvon Tigers ve Mozzarella di Giovanni arasında olmayan bir ProductName ile tüm ürünleri seçer:
 ``` sql
 
@@ -462,11 +466,15 @@ WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
 ORDER BY ProductName;
 
 ```
+#### BETWEEN Dates (Tarihler ile)
 
 
++ Aşağıdaki SQL ifadesi, '01-Temmuz-1996' ve '31-Temmuz-1996' arasındaki OrderDate'li tüm siparişleri seçer:
 
-
-
+```sql
+SELECT * FROM Orders
+WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+```
 
 
 
