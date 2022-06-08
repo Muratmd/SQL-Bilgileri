@@ -458,7 +458,7 @@ WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
 ORDER BY ProductName;
 ```
 #### NOT BETWEEN Text Values (Metinlerin dışında kalanlar)
-+ Aşağıdaki SQL ifadesi, Carnarvon Tigers ve Mozzarella di Giovanni arasında olmayan bir ProductName ile tüm ürünleri seçer:
++ Aşağıdaki SQL ifadesi, Carnarvon Tigers ve Mozzarella di Giovanni arasında olmayan bir ProductName ile tüm ürünleri seçer.
 ``` sql
 
 SELECT * FROM Products
@@ -469,14 +469,112 @@ ORDER BY ProductName;
 #### BETWEEN Dates (Tarihler ile)
 
 
-+ Aşağıdaki SQL ifadesi, '01-Temmuz-1996' ve '31-Temmuz-1996' arasındaki OrderDate'li tüm siparişleri seçer:
++ Aşağıdaki SQL ifadesi, '01-Temmuz-1996' ve '31-Temmuz-1996' arasındaki OrderDate'li tüm siparişleri seçer.
 
 ```sql
 SELECT * FROM Orders
 WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
 ```
 
-# SQL Aliases de kaldım
+### SQL Aliases(Takma Adlar)
+
++ SQL takma adları, bir tabloya veya tablodaki bir sütuna geçici bir ad vermek için kullanılır.
++ Takma adlar genellikle sütun adlarını daha okunaklı kılmak için kullanılır.
++ Bir takma ad yalnızca bir sorgunun süresi boyunca mevcuttur.
++ "AS" anahtar sözcüğüyle bir takma ad oluşturulur.
+
+#### Sütun Örnekleri için Takma Ad Örneği(Alias)
++ Aşağıdaki SQL deyimi, biri MüşteriKimliği sütunu ve diğeri MüşteriAdı sütunu için olmak üzere iki takma ad oluşturur.
+
+```sql
+SELECT CustomerID AS ID, CustomerName AS Customer
+FROM Customers;
+```
++ Aşağıdaki SQL deyimi, biri MüşteriAdı sütunu ve diğeri KişiAdı sütunu için olmak üzere iki takma ad oluşturur. Not: Takma ad boşluk içeriyorsa, çift tırnak işareti veya köşeli parantez gerekir.
+
+````sql
+SELECT ContactName AS Customer, ContactName AS [Contact Person]
+FROM Customers;
+````
++ Aşağıdaki SQL ifadesi, dört sütunu (Adres, Posta Kodu, Şehir ve Ülke) birleştiren "Adres" adlı bir takma ad oluşturur:
+````sql
+SELECT ContactName, Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address
+FROM Customers;
+````
+
+
+#### Tablolar için Takma Ad(Alias) Örneği
+
++ Aşağıdaki SQL deyimi, CustomerID='ALFKI' olan müşteriden gelen tüm siparişleri seçer (Alfred Schmidt). "Müşteriler" ve "Siparişler" tablolarını kullanıyoruz ve onlara sırasıyla "c" ve "o" tablo takma adlarını veriyoruz (Burada SQL'i kısaltmak için takma adlar kullanıyoruz).
+
+````sql
+SELECT o.OrderID, o.OrderDate, c.ContactName
+FROM Customers AS c, Orders AS o
+WHERE c.ContactName='Alfred Schmidt' AND c.CustomerID=o.CustomerID;
+````
+
++ Aşağıdaki SQL deyimi yukarıdakiyle aynıdır, ancak takma adları yoktur.
+````sql
+SELECT Orders.OrderID, Orders.OrderDate, Customers.ContactName
+FROM Customers, Orders
+WHERE Customers.ContactName='Alfred Schmidt' AND Customers.CustomerID=Orders.CustomerID;
+````
+### SQL JOIN
+
++ JOIN yan tümcesi, aralarında ilgili bir sütuna dayalı olarak iki veya daha fazla tablodaki satırları birleştirmek için kullanılır.
+
+````sql
+SELECT Orders.OrderID, Customers.ContactName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
+````
+
+OrderID	CustomerID	OrderDate
+10308	2	1996-09-18
+10309	37	1996-09-19
+10310	77	1996-09-20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
