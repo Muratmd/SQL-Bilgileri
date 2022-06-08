@@ -524,6 +524,26 @@ WHERE Customers.ContactName='Alfred Schmidt' AND Customers.CustomerID=Orders.Cus
 + JOIN yan tümcesi, aralarında ilgili bir sütuna dayalı olarak iki veya daha fazla tablodaki satırları birleştirmek için kullanılır.
 
 
+
+### Farklı Tiplerdeki SQL JOINs
+
++ (INNER) JOIN: Her iki tabloda da eşleşen değerlere sahip kayıtları döndürür
+
++ LEFT (OUTER) JOIN: Soldaki tablodaki tüm kayıtları ve sağdaki tablodaki eşleşen kayıtları döndürür.
+
++ RIGHT (OUTER) JOIN: Sağdaki tablodaki tüm kayıtları ve soldaki tablodaki eşleşen kayıtları döndürür.
+
++ FULL (OUTER) JOIN: Sol veya sağ tabloda bir eşleşme olduğunda tüm kayıtları döndürür
+
+
+####  SQL INNER JOIN
+
++ INNER JOIN anahtar sözcüğü, her iki tabloda da eşleşen değerlere sahip kayıtları seçer.
+
++ Aşağıdaki SQL ifadesi, müşteri bilgilerine sahip tüm siparişleri seçer:
+
+
+
 | OrderID  | 	CustomerID |OrderDate |
 | ------------- | ------------- | ------------- |
 | 10248 | VINET  | 1996-07-04|
@@ -545,16 +565,73 @@ FROM Orders
 INNER JOIN Customers
 ON Orders.CustomerID=Customers.CustomerID;
 ````
++ Not: INNER JOIN anahtar sözcüğü, sütunlar arasında bir eşleşme olduğu sürece her iki tablodaki tüm satırları seçer. "Siparişler" tablosunda "Müşteriler" de eşleşmeyen kayıtlar varsa, bu siparişler gösterilmeyecektir!
 
-### Farklı Tiplerdeki SQL JOINs
 
-+ (INNER) JOIN: Her iki tabloda da eşleşen değerlere sahip kayıtları döndürür
+#### SQL LEFT JOIN
++ LEFT JOIN anahtar sözcüğü, soldaki tablodaki (tablo1) tüm kayıtları ve sağdaki tablodaki (tablo2) eşleşen kayıtları döndürür. Sonuç, eşleşme yoksa sağ taraftan 0 kayıttır.
 
-+ LEFT (OUTER) JOIN: Soldaki tablodaki tüm kayıtları ve sağdaki tablodaki eşleşen kayıtları döndürür.
+````sql
+SELECT Customers.ContactName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.ContactName;
 
-+ RIGHT (OUTER) JOIN: Sağdaki tablodaki tüm kayıtları ve soldaki tablodaki eşleşen kayıtları döndürür.
+````
+#### SQL RIGHT JOIN 
++ RIGHT JOIN anahtar sözcüğü, sağdaki tablodaki (tablo2) tüm kayıtları ve soldaki tablodaki (tablo1) eşleşen kayıtları döndürür. Sonuç, eşleşme yoksa sol taraftan 0 kayıttır.
 
-+ FULL (OUTER) JOIN: Sol veya sağ tabloda bir eşleşme olduğunda tüm kayıtları döndürür
+````sql
+SELECT Customers.ContactName, Orders.OrderID
+FROM Customers
+RIGHT JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.ContactName;
+````
+
+#### SQL FULL OUTER JOIN
++ Aşağıdaki SQL ifadesi tüm müşterileri ve tüm siparişleri seçer:
+````sql
+SELECT Customers.ContactName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.ContactName;
+````
+
+#### SQL Self Join
++ Aşağıdaki SQL ifadesi, aynı şehirden olan müşterilerle eşleşir:
+
+````sql
+SELECT A.ContactName AS CustomerName1, B.ContactName AS CustomerName2, A.City
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;
+````
+
+# The SQL UNION Operator de kaldım
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
