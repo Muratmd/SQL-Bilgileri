@@ -430,14 +430,21 @@ WHERE Country IN (SELECT Country FROM Suppliers);
 + BETWEEN operatörü, belirli bir aralıktaki değerleri seçer. Değerler sayı, metin veya tarih olabilir.
 + BETWEEN operatörü kapsayıcıdır: başlangıç ve bitiş değerleri dahildir.
 
++ Aşağıdaki SQL ifadesi, fiyatı 10 ile 20 arasında olan tüm ürünleri seçer,
 
+```sql
+SELECT * FROM  Products WHERE UnitPrice BETWEEN 10 AND 20;
+``` 
 
++ Önceki örneğin kapsamı dışında kalan ürünleri görüntülemek için, NOT BETWEEN'i kullanın.
+```sql
+SELECT * FROM  Products WHERE UnitPrice NOT BETWEEN 10 AND 20;
+``` 
++ Aşağıdaki SQL deyimi, fiyatı 10 ile 20 arasında olan tüm ürünleri seçmektedir. Ayrıca; Kategori Kimliği 1,2 veya 3 olan ürünleri gösterme ve Fiyatları küçükten büyüğe sırala.
 
-
-
-
-
-
+```sql 
+SELECT * FROM Products WHERE UnitPrice BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3) ORDER BY UnitPrice;
+```` 
 
 
 
