@@ -405,7 +405,39 @@ WHERE City NOT LIKE '[bsp]%';
  
  
  
- # IN de kaldım
+ ### SQL IN 
++ IN operatörü, bir WHERE yan tümcesinde birden çok değer belirtmenize izin verir.
++ IN operatörü, çoklu OR(VEYA) koşulları için bir kısayoldur.
+
++ Aşağıdaki SQL ifadesi, "Almanya", "Fransa" veya "İngiltere"de bulunan tüm müşterileri seçer.
+```sql
+SELECT * FROM Customers  WHERE Country IN ('Germany','France','UK');
+```
+
++ Aşağıdaki SQL deyimi, "Almanya", "Fransa" veya "İngiltere" de OLMAYAN tüm müşterileri seçer.
+```sql
+SELECT * FROM Customers WHERE Country NOT IN  ('Mexico','Spain');
+```
+
++ Aşağıdaki SQL ifadesi, tedarikçilerle aynı ülkelerden gelen tüm müşterileri seçer.
+
+```sql
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+```
+
+### SQL BETWEEN
++ BETWEEN operatörü, belirli bir aralıktaki değerleri seçer. Değerler sayı, metin veya tarih olabilir.
++ BETWEEN operatörü kapsayıcıdır: başlangıç ve bitiş değerleri dahildir.
+
+
+
+
+
+
+
+
+
 
 
 
