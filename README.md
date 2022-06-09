@@ -724,6 +724,23 @@ WHERE LastName = 'Davolio' OR LastName = 'Fuller'
 GROUP BY LastName
 HAVING COUNT(Orders.OrderID) > 25;
 ````
+## SQL EXISTS
++ EXISTS operatörü, bir alt sorgudaki herhangi bir kaydın varlığını test etmek için kullanılır.
++ EXISTS operatörü, alt sorgu bir veya daha fazla kayıt döndürürse TRUE değerini döndürür.
+
++ Aşağıdaki SQL ifadesi TRUE değerini döndürür ve ürün fiyatı 20'den az olan tedarikçileri listeler:
+````sql
+SELECT CompanyName
+FROM Suppliers
+WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND UnitPrice < 20);
+````
+
++ Aşağıdaki SQL ifadesi TRUE değerini döndürür ve 22'ye eşit bir ürün fiyatına sahip tedarikçileri listeler:
+````sql
+SELECT CompanyName
+FROM Suppliers
+WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND UnitPrice = 22);
+````
 
 ## SQL ANY Ve ALL
 + ANY ve ALL operatörleri, tek bir sütun değeri ile bir dizi başka değer arasında karşılaştırma yapmanızı sağlar.
@@ -781,28 +798,50 @@ WHERE ProductID = ALL
 ````
 
 
-# The SQL SELECT INTO Statement
+## SQL SELECT INTO 
+
++ SELECT INTO ifadesi, bir tablodaki verileri yeni bir tabloya kopyalar.
+
++ Aşağıdaki SQL ifadesi, Müşterilerin bir yedek kopyasını oluşturur.
+
+````sql
+SELECT * INTO YedekTablo
+FROM Customers;
+````
++ Aşağıdaki SQL ifadesi, yalnızca birkaç sütunu yeni bir tabloya kopyalar.
+````sql
+SELECT CustomerName, ContactName INTO CustomersBackup2017
+FROM Customers;
+````
++ Aşağıdaki SQL ifadesi, yalnızca Alman müşterileri yeni bir tabloya kopyalar.
+
+````sql
+SELECT * INTO CustomersGermany
+FROM Customers
+WHERE Country = 'Germany';
+````
++ Aşağıdaki SQL ifadesi, birden fazla tablodaki verileri yeni bir tabloya kopyalar.
+
+````sql
+SELECT Customers.CustomerName, Orders.OrderID
+INTO CustomersOrderBackup2017
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+````
+## SQL INSERT INTO SELECT
+
++ INSERT INTO SELECT ifadesi, verileri bir tablodan kopyalar ve başka bir tabloya ekler.
++ INSERT INTO SELECT ifadesi, kaynak ve hedef tablolardaki veri türlerinin eşleşmesini gerektirir.
+
++ Aşağıdaki SQL ifadesi, "Suppliers"i "Customers"e kopyalar (Null hatası verecektir):
+````sql
+INSERT INTO Customers (ContactName, City, Country)
+SELECT ContactName, City, Country FROM Suppliers;
+````
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# The SQL CASE Statement
 
 
 
