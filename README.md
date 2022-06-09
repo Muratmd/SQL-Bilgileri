@@ -610,29 +610,64 @@ AND A.City = B.City
 ORDER BY A.City;
 ````
 
-# The SQL UNION Operator de kaldım
+### SQL UNION
+
++ UNION operatörü, iki veya daha fazla SELECT ifadesinin sonuç kümesini birleştirmek için kullanılır.
+1. UNION içindeki her SELECT deyimi aynı sayıda sütuna sahip olmalıdır.
+2. Sütunlar da benzer veri türlerine sahip olmalıdır.
+3. Her SELECT ifadesindeki sütunlar da aynı sırada olmalıdır.
 
 
 
+#### UNION
 
 
++ Aşağıdaki SQL ifadesi, hem "Customers" hem de "Suppliers" tablosundan şehirleri (yalnızca farklı değerleri) döndürür.
+````sql
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+````
+#### UNION ALL
++ Aşağıdaki SQL ifadesi, hem "Customers" hem de "Suppliers" tablosundan şehirleri (Tekrar eden değerleri) döndürür.
+````sql
+SELECT City FROM Customers
+UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City;
+````
+#### SQL UNION Ile WHERE
++ Aşağıdaki SQL ifadesi, hem "Customers" hem de "Suppliers" tablosundan 'Germany' şehirlerini (yalnızca farklı değerleri) döndürür.
+````sql
+SELECT City, Country FROM Customers
+WHERE Country='Germany'
+UNION
+SELECT City, Country FROM Suppliers
+WHERE Country='Germany'
+ORDER BY City;
+````
+#### SQL UNION ALL Ile WHERE
++ Aşağıdaki SQL ifadesi, hem "Customers" hem de "Suppliers" tablosundan 'Germany' şehirlerini (Tekrar eden değerleri) döndürür.
+````sql
+SELECT City, Country FROM Customers
+WHERE Country='Germany'
+UNION ALL
+SELECT City, Country FROM Suppliers
+WHERE Country='Germany'
+ORDER BY City;
+````
+#### Örnek
 
++ Aşağıdaki SQL deyimi tüm müşterileri ve tedarikçileri listeler:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+````sql
+SELECT 'Customer' AS Type, ContactName, City, Country
+FROM Customers
+UNION
+SELECT 'Supplier', ContactName, City, Country
+FROM Suppliers;
+````
 
 
 
