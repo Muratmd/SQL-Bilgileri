@@ -668,6 +668,133 @@ UNION
 SELECT 'Supplier', ContactName, City, Country
 FROM Suppliers;
 ````
+## SQL GROUP BY
+
++ GROUP BY ifadesi, aynı değerlere sahip satırları "her ülkedeki müşteri sayısını bul" gibi özet satırlarda gruplandırır.
++ GROUP BY ifadesi, sonuç kümesini bir veya daha fazla sütunla gruplandırmak için genellikle toplama işlevleriyle (COUNT(), MAX(), MIN(), SUM(), AVG()) kullanılır.
+
+#### GROUP BY
++ Aşağıdaki SQL deyimi, her ülkedeki müşteri sayısını listeler.
+````sql
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+````
++ Aşağıdaki SQL deyimi, yüksekten düşüğe doğru sıralanmış olarak her ülkedeki müşteri sayısını listeler.
+````sql
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+ORDER BY COUNT(CustomerID) DESC;
+````
+#### GROUP BY Ile JOIN
++ Aşağıdaki SQL deyimi, her bir gönderici tarafından gönderilen siparişlerin sayısını listeler.
+````sql
+SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+GROUP BY ShipperName;
+````
+## SQL HAVING
++ WHERE anahtar sözcüğü toplama işlevleriyle kullanılamadığından, HAVING yan tümcesi SQL'e eklendi.
+
+#### HAVING 
++ Aşağıdaki SQL deyimi, yüksekten düşüğe doğru sıralanmış olarak her ülkedeki müşteri sayısını listeler (Yalnızca 5'ten fazla müşterisi olan ülkeleri içerir).
+````sql
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country 
+HAVING COUNT(CustomerID) > 5 ORDER BY COUNT(CustomerID) DESC;
+
+````
++ Aşağıdaki SQL deyimi, 10'dan fazla sipariş kaydeden çalışanları listeler.
+````sql
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+FROM (Orders
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) > 10 ORDER BY NumberOfOrders DESC;
+````
++ Aşağıdaki SQL deyimi, "Davolio" veya "Fuller" çalışanlarının 25'ten fazla sipariş kaydettirip kaydetmediğini listeler.
+
+````sql
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+FROM Orders
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) > 25;
+````
+
+## SQL ANY Ve ALL
++ ANY ve ALL operatörleri, tek bir sütun değeri ile bir dizi başka değer arasında karşılaştırma yapmanızı sağlar.
+
+#### ANY
++ sonuç olarak bir boolean değeri döndürür
++ Alt sorgu değerlerinden HERHANGİ BİRİ koşulu karşılıyorsa TRUE değerini döndürür.
+
++ Aşağıdaki SQL deyimi, OrderDetails tablosunda Quantity'nin 10'a eşit HERHANGİ bir kaydı bulursa ProductName'i listeler (Quantity sütununda 10'luk bazı değerler olduğundan bu, TRUE değerini döndürür).
+````sql
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM [Order Details]
+  WHERE Quantity = 10);
+````
+
++ Aşağıdaki SQL deyimi, OrderDetails tablosunda Quantity'nin 99'dan büyük HERHANGİ bir kaydı bulursa ProductName'i listeler (Miktar sütununda 99'dan büyük bazı değerler olduğundan bu, TRUE değerini döndürür).
+````sql
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM [Order Details]
+  WHERE Quantity > 99) ORDER BY ProductName;
+````
+
++ Aşağıdaki SQL deyimi, OrderDetails tablosunda Miktar 1000'den büyük HERHANGİ bir kayıt bulursa ÜrünAdı'nı listeler (Miktar sütununun 1000'den büyük değeri olmadığı için bu FALSE döndürür):
+
+````sql
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM [Order Details]
+  WHERE Quantity > 1000);
+````
+
+#### ALL 
++ sonuç olarak bir boolean değeri döndürür.
++ TÜM alt sorgu değerleri koşulu karşılıyorsa TRUE değerini döndürür.
++ SELECT, WHERE ve HAVING ifadeleriyle birlikte kullanılır.
++ ALL, koşulu yalnızca aralıktaki tüm değerler için işlem doğruysa doğru olacağı anlamına gelir.
+
++ Aşağıdaki SQL deyimi, OrderDetails tablosundaki TÜM kayıtların Quantity değeri 10'a eşitse, ProductName'i listeler. Quantity sütununda birçok farklı değer olduğundan (yalnızca 10 değeri değil) bu, elbette FALSE döndürür:
+
+````sql
+SELECT ProductName
+FROM Products
+WHERE ProductID = ALL
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10);
+````
+
+
+# The SQL SELECT INTO Statement
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
