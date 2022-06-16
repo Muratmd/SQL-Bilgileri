@@ -841,23 +841,183 @@ SELECT ContactName, City, Country FROM Suppliers;
 
 
 
-# The SQL CASE Statement
+## SQL Comments(Yorum Satırı)
 
+### Tek Satırda Yorum Satırı
++ Tek satırlık yorumlar -- ile başlar.
++ -- ile satırın sonu arasındaki herhangi bir metin yok sayılır (yürütülmez).
++ Aşağıdaki örnek, açıklama olarak tek satırlık bir yorum kullanır:
 
+````sql
+--Select all:
+SELECT * FROM Customers;
+````
+### Birden fazla Satırda Yorum Satırı
++ Çok satırlı yorumlar /* ile başlar ve */ ile biter.
++ /* ve */ arasındaki herhangi bir metin yok sayılır.
++ Aşağıdaki örnek, açıklama olarak çok satırlı bir yorum kullanır:
+````sql
+/*Select all the columns
+of all the records
+in the Customers table:*/
+SELECT * FROM Customers;
+````
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Veri Tabanı Komutları
 
+## CREATE DATABASE(Database Oluşturma)
 
++ CREATE DATABASE ifadesi, yeni bir SQL veritabanı oluşturmak için kullanılır.
+````sql
+CREATE DATABASE Veritabanı_ismi;
+````
 
+## SQL DROP DATABASE(Database Silme)
 
++ DROP DATABASE ifadesi, mevcut bir SQL veritabanını bırakmak(Silmek) için kullanılır.
 
+````sql
+DROP DATABASE Veritabanı_ismi;
+````
+## SQL BACKUP DATABASE (Yedek Alma)
++ BACKUP DATABASE ifadesi, SQL Server'da mevcut bir SQL veritabanının tam yedeğini oluşturmak için kullanılır.
 
+````sql
+BACKUP DATABASE Veritabanı_ismi
+TO DISK = 'DOSYA_YOLU';
+````
+## SQL CREATE TABLE(Veritabanı için tablo oluşturma)
++ CREATE TABLE ifadesi, bir veritabanında yeni bir tablo oluşturmak için kullanılır.
+````sql
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+````
+## SQL DROP TABLE(Tablo Silme)
++ DROP TABLE ifadesi, bir veritabanındaki mevcut bir tabloyu bırakmak için kullanılır.
 
+````sql
+DROP TABLE Shippers(Tablo_Ismi);
+````
 
+## SQL ALTER TABLE
++ ALTER TABLE ifadesi, mevcut bir tablodaki sütunları eklemek, silmek veya değiştirmek için kullanılır.
++ ALTER TABLE ifadesi ayrıca mevcut bir tabloya çeşitli kısıtlamalar eklemek ve bırakmak(Silmek) için kullanılır.
 
+#### ALTER TABLE - ADD Column
++ Aşağıdaki SQL, "Müşteriler" tablosuna bir "E-posta" sütunu ekler:
 
+````sql
+ALTER TABLE Customers
+ADD Email varchar(255);
+````
+#### ALTER TABLE - DROP COLUMN
++ Aşağıdaki SQL, "Müşteriler" tablosundan "E-posta" sütununu siler:
 
+````sql
+ALTER TABLE Customers
+DROP COLUMN Email;
+````
+#### SQL ALTER TABLE Example
++ Şimdi "Kişiler" tablosuna "DateOfBirth" adlı bir sütun eklemek istiyoruz. Aşağıdaki SQL deyimini kullanıyoruz:
 
+````sql
+ALTER TABLE Persons
+ADD DateOfBirth date;
+````
+#### DROP COLUMN Example
++ Ardından, "Kişiler" tablosunda "DateOfBirth" adlı sütunu silmek istiyoruz. Aşağıdaki SQL deyimini kullanıyoruz:
 
+````sql
+ALTER TABLE Persons
+DROP COLUMN DateOfBirth;
+````
+
+# SQL Constraints(Kurallar,Kısıtlama)
+
++ NOT NULL - Bir sütunun NULL değerine sahip olmamasını sağlar.
++ UNIQUE - Bir sütundaki tüm değerlerin farklı olmasını sağlar.
++ BİRİNCİL ANAHTAR(PK,PRIMARY KEY) - NULL DEĞİL ve BENZERSİZ kombinasyonu. Bir tablodaki her satırı benzersiz bir şekilde tanımlar.
++ YABANCI ANAHTAR(FK,FOREIGN KEY) - Tablolar arasındaki bağlantıları yok edecek eylemleri engeller.
++ CHECK - Bir sütundaki değerlerin belirli bir koşulu karşılamasını sağlar.
++ DEFAULT - Değer belirtilmemişse bir sütun için varsayılan bir değer ayarlar.
++ CREATE INDEX - Veritabanından çok hızlı bir şekilde veri oluşturmak ve almak için kullanılır.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Tablo Oluşturma Sırasında NOT NULL 
++ Aşağıdaki SQL, "Kişiler" tablosu oluşturulduğunda "ID", "LastName" ve "FirstName" sütunlarının NULL değerleri kabul etmemesini sağlar:
+
+````sql
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    Age int
+);
+````
+## ALTER TABLE ile NOT NULL(var olan tabloda güncelleme)
++ "Kişiler" tablosu zaten oluşturulduğunda "Yaş" sütununda NULL DEĞİL kısıtlaması oluşturmak için aşağıdaki SQL'i kullanın:
+````sql
+ALTER TABLE Persons
+MODIFY Age int NOT NULL;
+````
+
+## Tablo Oluşturma Sırasında SQL UNIQUE(Tekrarlanamaz Veri)
++ Aşağıdaki SQL, "Kişiler" tablosu oluşturulduğunda "Kimlik" sütununda BENZERSİZ bir kısıtlama oluşturur:
+
+````sql
+CREATE TABLE Persons (
+    ID int NOT NULL UNIQUE,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int
+);
+````
+
+## ALTER TABLE ile SQL UNIQUE
++ Tablo zaten oluşturulduğunda "ID" sütununda BENZERSİZ bir kısıtlama oluşturmak için aşağıdaki SQL'i kullanın:
+````sql
+ALTER TABLE Persons
+ADD UNIQUE (ID);
+````
+## SQL PRIMARY KEY(Birincil anahtar)
++ PRIMARY KEY kısıtlaması, bir tablodaki her kaydı benzersiz şekilde tanımlar.
++ Birincil anahtarlar BENZERSİZ değerler içermelidir ve NULL değerler içeremez.
++ Bir tabloda yalnızca BİR birincil anahtar olabilir; ve tabloda, bu birincil anahtar tek veya birden çok sütundan (alanlardan) oluşabilir.
++ Aşağıdaki SQL, "Kişiler" tablosu oluşturulduğunda "Kimlik" sütununda bir BİRİNCİL ANAHTAR oluşturur:
+
+````sql
+CREATE TABLE Persons (
+    ID int NOT NULL PRIMARY KEY,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int
+);
+````
+## ALTER TABLE ile PRIMARY KEY
++ Tablo zaten Oluşturulmuş "ID" sütununda bir PRIMARY KEY kısıtlaması oluşturmak için aşağıdaki SQL'i kullanın:
+
+````sql
+ALTER TABLE Persons
+ADD PRIMARY KEY (ID);
+````
+## DROP PRIMARY KEY
++ Bir PRIMARY KEY kısıtlamasını bırakmak için aşağıdaki SQL'i kullanın:
+````sql
+ALTER TABLE Persons
+DROP PRIMARY KEY;
+````
+## SQL FOREIGN KEY(Yabancı Anahtar)
+
++ YABANCI ANAHTAR kısıtlaması, tablolar arasındaki bağlantıları yok edecek eylemleri önlemek için kullanılır.
++ YABANCI ANAHTAR, bir tablodaki, başka bir tablodaki BİRİNCİL ANAHTAR'a başvuran bir alandır (veya alanlar topluluğudur).
+
++ Yabancı anahtara sahip tabloya alt tablo, birincil anahtara sahip tabloya başvurulan veya ana tablo denir. Aşağıdaki iki tabloya bakın:
 
 
 
