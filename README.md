@@ -1019,11 +1019,54 @@ DROP PRIMARY KEY;
 
 + Yabancı anahtara sahip tabloya alt tablo, birincil anahtara sahip tabloya başvurulan veya ana tablo denir. Aşağıdaki iki tabloya bakın:
 
+| PersonID  | LastName |FirstName|Age|
+| ------------- | ------------- |------------- |------------- |
+| 1  | Hansen  |Ola|30|
+| 2 | Svendson  |Tove|23|
+| 3 |Pettersen  |Kari|20|
 
+| OrderID  | OrderNumber |PersonID|
+| ------------- | ------------- |------------- |
+| 1  | 77895  |3|
+| 2 | 44678  |3|
+| 3 |22456  |2|
+| 4 |24562  |1|
 
++ "Siparişler" tablosundaki "PersonID" sütununun "Persons" tablosundaki "PersonID" sütununu gösterdiğine dikkat edin.
++ "Kişiler" tablosundaki "PersonID" sütunu, "Kişiler" tablosundaki BİRİNCİL ANAHTARDIR.
++ "Siparişler" tablosundaki "PersonID" sütunu, "Siparişler" tablosundaki bir YABANCI ANAHTARDIR.
++ YABANCI ANAHTAR kısıtlaması, üst tabloda bulunan değerlerden biri olması gerektiğinden, yabancı anahtar sütununa geçersiz verilerin eklenmesini engeller.
 
+## Tablo Oluşturma Sırasında FOREIGN KEY
++ Aşağıdaki SQL, "Siparişler" tablosu oluşturulduğunda "PersonID" sütununda bir YABANCI ANAHTAR oluşturur:
+````sql
+CREATE TABLE Orders (
+    OrderID int NOT NULL PRIMARY KEY,
+    OrderNumber int NOT NULL,
+    PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+);
+````
+## ALTER TABLE ile FOREIGN KEY
++  "Siparişler" tablosu zaten oluşturulduğunda "PersonID" sütununda YABANCI ANAHTAR kısıtlaması oluşturmak için aşağıdaki SQL'i kullanın:
+````sql
+ALTER TABLE Orders
+ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+````
 
+## DROP FOREIGN KEY 
++ YABANCI ANAHTAR kısıtlamasını bırakmak için aşağıdaki SQL'i kullanın:
+````sql
+ALTER TABLE Orders
+DROP CONSTRAINT FK_PersonOrder;
+````
+## SQL CHECK(Kontrol)
++ Aşağıdaki SQL, "Kişiler" tablosu oluşturulduğunda "Yaş" sütununda bir CHECK kısıtlaması oluşturur. CHECK kısıtlaması, bir kişinin yaşının 18 veya daha büyük olmasını sağlar:
+````sql
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int CHECK (Age>=18)
+);
 
-
-
-
+````
