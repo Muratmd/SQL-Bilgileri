@@ -1,3 +1,5 @@
+NOT: hocanın verdiği soruları yukarıda pdf e ekliyorum ordanda çalışa bilirsiniz 
+
 # SQL-Bilgileri
 
 + örnek veritabanına bu [linkten ulaşa bilirsiniz](https://github.com/Muratmd/SQL-Bilgileri/blob/main/Nortwind.sql).
