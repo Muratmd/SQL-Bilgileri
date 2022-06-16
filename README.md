@@ -1070,3 +1070,7 @@ CREATE TABLE Persons (
 );
 
 ````
+
+
+
+# NOT NEWID()unutmuşum ekleyeceğim
