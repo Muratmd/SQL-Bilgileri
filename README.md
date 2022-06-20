@@ -125,7 +125,17 @@ SELECT * FROM Customers ORDER BY Country;
 ```
 + Alfabetik yada Sayısal sıralama bu ASC sıralamadır.(DESC diye Belirtmediğinizde ASC dir ).
 + Customers Tablosunun Ülkeler sütunu içerisindeki verileri alfabetik sıraya soktuk.
-+ 
+
+### ORDER BY ve NEWID()
++ NEWID() her seferinde tablodaki verilerin yer değiştirmesini sağlar.
++ Aşağıdaki sorguda sıralama her seferinde farklı olacaktır.
+````sql
+SELECT * FROM Customers ORDER BY newid();
+````
++ Aşağıdaki sorguda rastgele bir Customer seçmek için TOP ifadesini kullanacağız.
+ ````sql
+SELECT TOP 1 * FROM Customers ORDER BY newid();  
+````
 
 ### ORDER BY DESC
 ```sql
@@ -1070,9 +1080,4 @@ CREATE TABLE Persons (
     FirstName varchar(255),
     Age int CHECK (Age>=18)
 );
-
 ````
-
-
-
-# NOT NEWID()unutmuşum ekleyeceğim
